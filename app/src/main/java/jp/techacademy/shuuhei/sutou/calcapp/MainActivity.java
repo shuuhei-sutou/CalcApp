@@ -46,6 +46,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String str1 = editText1.getText().toString();
         String str2 = editText2.getText().toString();
 
+        if(str1.length() == 0 && str2.length() == 0){
+            Log.d("str1", "str1");
+            str1 = "0";
+            str2 = "0";
+        }
+        else if (str1.length() == 0){
+            str1 = "0";
+        }
+        else if (str2.length() == 0){
+            str2 = "0";
+        }
+
         BigDecimal a = new BigDecimal(str1);
         BigDecimal b = new BigDecimal(str2);
 
