@@ -45,10 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String str1 = editText1.getText().toString();
         String str2 = editText2.getText().toString();
+
         BigDecimal a = new BigDecimal(str1);
         BigDecimal b = new BigDecimal(str2);
-
-        Log.d("onClick", "変数 i は「" + a + "」");
 
         if(v.getId() == R.id.button1){
             BigDecimal result = a.add(b);
@@ -60,8 +59,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             BigDecimal result = a.multiply(b);
             intent.putExtra("VALUE", result);
         }else if(v.getId() == R.id.button4){
-            BigDecimal result = a.divide(b,10, RoundingMode.HALF_UP);
-            intent.putExtra("VALUE", result);
+            if(a.compareTo(BigDecimal.ZERO)==0 || b.compareTo(BigDecimal.ZERO)==0) {
+                BigDecimal result = new BigDecimal("0");
+                intent.putExtra("VALUE", result);
+            }
+            else{
+                BigDecimal result = a.divide(b,10, RoundingMode.HALF_UP);
+                intent.putExtra("VALUE", result);
+                }
         }
 
         startActivity(intent);
